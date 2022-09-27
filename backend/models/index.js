@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const Post = require('./posts');
+const Board = require('./boards');
 
 const config = require('../config/config.json')['development'];
 
@@ -9,9 +9,9 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
 
 db.sequelize = sequelize;
 
-db.Post = Post;
+db.Board = Board;
 
-Post.init(sequelize);
-Post.associate(db);
+Board.init(sequelize);
+Board.associate(db);
 
 module.exports = db;
