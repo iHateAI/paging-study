@@ -1,16 +1,16 @@
 const { Board } = require("../models");
 
 module.exports = class boardService {
-  async addTestData() {
-    for (let i = 1; i < 1001; i++) {
-      await Board.create({
-        title: `제목 ${i}`,
-        author: `익명 ${i}`,
-      });
-    }
+  async getPageCount() {
+    return Board.count();
   }
 
-  async getPageCount() {
-
+  async getPages(data) {
+    const { pageNum, pageSize } = data;
+    return Board.findAll({
+      order: [["id", "DESC"]],
+      limit: pageNum,
+      offset: pageSize,
+    });
   }
 };
