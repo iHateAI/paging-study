@@ -11,11 +11,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>제목1</td>
-          <td>작성자1</td>
-          <td>일시</td>
+        <tr v-for="post in postList" :key="post.id">
+          <td>{{post.id}}</td>
+          <td>{{post.title}}</td>
+          <td>{{post.author}}</td>
+          <td>{{post.createDate}}</td>
         </tr>
       </tbody>
     </table>
@@ -24,15 +24,33 @@
 
 <script>
 // @ is an alias to /src
-
+import axios from 'axios';
 
 export default {
   name: 'HomeView',
   components: {
 
-  }
+  },
+  data() {
+    return {
+      postList: [
+        {id: 1, title: '제목 1', author: '익명 1', createDate: '2020-12-02'}, 
+        {id: 2, title: '제목 2', author: '익명 2', createDate: '2020-12-02'}, 
+        {id: 3, title: '제목 3', author: '익명 3', createDate: '2020-12-02'}, 
+        {id: 4, title: '제목 4', author: '익명 4', createDate: '2020-12-02'}
+      ]
+    }
+  },
+  created() {
+    
+  },
 }
 </script>
+
+
+
+
+
 
 <style scoped>
 .board {
