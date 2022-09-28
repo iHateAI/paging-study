@@ -2,11 +2,14 @@ const express = require("express");
 const { sequelize } = require("./models");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 const { boardRouter } = require("./routes");
 
 const app = express();
 dotenv.config();
+
+app.use(cors({ origin: 'http://localhost:8080', credentials: true }));
 
 const SERVER_PORT = process.env.PORT || 3000;
 

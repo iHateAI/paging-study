@@ -42,7 +42,13 @@ export default {
     }
   },
   created() {
-    
+    axios.get('http://localhost:3000/boards?pageNum=1&pageSize=5', {withCredentials: true})
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.error(err);
+      })
   },
 }
 </script>
