@@ -1,0 +1,1 @@
+module.exports.boardService = require('./board.service');

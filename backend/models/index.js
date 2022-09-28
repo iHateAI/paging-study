@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const Board = require('./boards');
+const Board = require('./board.model');
 
 const config = require('../config/config.json')['development'];
 

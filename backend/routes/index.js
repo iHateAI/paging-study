@@ -1,0 +1,1 @@
+module.exports.boardRouter = require('./board.router')

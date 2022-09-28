@@ -1,0 +1,1 @@
+module.exports.boardCtrl = require('./board.ctrl');
