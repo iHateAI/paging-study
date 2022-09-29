@@ -24,7 +24,7 @@
         <button @click="getPreviosPage">이전</button>
         <span>{{pageNum}}</span>
         /
-        <span>15</span>
+        <span>{{maxPageNum}}</span>
         <button @click="getNextPage">다음</button>
       </div>
     </div>
@@ -44,7 +44,7 @@ export default {
     return {
       pageNum: 1,
       pageSize: 5,
-      maxPage: null,
+      maxPageNum: null,
       postList: []
     }
   },
@@ -54,17 +54,20 @@ export default {
         this.pageNum--;
       axios.get(`http://localhost:3000/boards?pageNum=${this.pageNum}&pageSize=5`)
       .then(res => {
-        this.postList = res.data;
+        const { pages } = res.data.data;
+        this.postList = pages;
       })
       .catch(err => {
         console.error(err);
       });
     },
     getNextPage: function() {
+      if (this.pageNum !== this.maxPageNum)
       this.pageNum++;
       axios.get(`http://localhost:3000/boards?pageNum=${this.pageNum}&pageSize=5`)
       .then(res => {
-        this.postList = res.data;
+        const { pages } = res.data.data;
+        this.postList = pages;
       })
       .catch(err => {
         console.error(err);
@@ -74,7 +77,9 @@ export default {
   created() {
     axios.get('http://localhost:3000/boards?pageNum=1&pageSize=5')
       .then(res => {
-        this.postList = res.data;
+        const { pages, pagesCount } = res.data.data;
+        this.maxPageNum = pagesCount;
+        this.postList = pages;
       })
       .catch(err => {
         console.error(err);

@@ -6,8 +6,17 @@ const pagination = async (req, res) => {
   pageSize = parseInt(pageSize);
 
   const pages = await boardService.getPages({ pageNum, pageSize });
-
-  res.status(200).send(pages);
+  const rowCount = await boardService.getPagesCount();
+  const pagesCount = Math.ceil(rowCount / pageSize);
+  
+  res.status(200).send({
+    success: true,
+    message: '페이지네이션 데이터 조회',
+    data: {
+      pages,
+      pagesCount
+    }
+  });
 };
 
 module.exports = {

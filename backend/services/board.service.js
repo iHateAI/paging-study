@@ -8,6 +8,11 @@ const getPages = async (data) => {
   });
 };
 
+const getPagesCount = async () => {
+  return Board.count();
+};
+
 module.exports = {
   getPages,
+  getPagesCount,
 };
