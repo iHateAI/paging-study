@@ -2,30 +2,32 @@
   <div class="home">
     <h1>게시판 페이징 기능 구현</h1>
     <div class="board-container">
-      <table class="board">
-        <thead>
-          <tr>
-            <th>번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>등록일</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="post in postList" :key="post.id">
-            <td>{{post.id}}</td>
-            <td>{{post.title}}</td>
-            <td>{{post.author}}</td>
-            <td>{{post.created_at}}</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="seq">
-        <button @click="getPreviosPage">이전</button>
-        <span>{{pageNum}}</span>
-        /
-        <span>{{maxPageNum}}</span>
-        <button @click="getNextPage">다음</button>
+      <div class="content">
+        <table class="board">
+          <thead>
+            <tr>
+              <th>번호</th>
+              <th>제목</th>
+              <th>작성자</th>
+              <th>등록일</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="post in postList" :key="post.id">
+              <td>{{post.id}}</td>
+              <td>{{post.title}}</td>
+              <td>{{post.author}}</td>
+              <td>{{post.created_at}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="seq">
+          <button @click="getPreviosPage">이전</button>
+          <span>{{pageNum}}</span>
+          /
+          <span>{{maxPageNum}}</span>
+          <button @click="getNextPage">다음</button>
+        </div>
       </div>
     </div>
   </div>
@@ -88,15 +90,24 @@ export default {
 }
 </script>
 
-
-
-
-
-
 <style scoped>
-.board {
+
+.board-container {
+  width: 600px;
+}
+
+.board-container .content {
+  width: 100%;
+  text-align: center;
+}
+
+.board-container .board {
   width: 600px;
   text-align: center;
+}
+
+.board-container .seq {
+  margin-top: 20px;
 }
 
 </style>
